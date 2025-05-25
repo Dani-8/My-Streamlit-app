@@ -1,3 +1,6 @@
 PyPDF2
 streamlit
-# Add other dependencies as needed
+Pillow
+pytesseract
+pandas
+scikit-learn
