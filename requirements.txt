@@ -1,7 +1,6 @@
 PyPDF2
 streamlit
 Pillow
-pytesseract
 pandas
 scikit-learn
 easyocr
