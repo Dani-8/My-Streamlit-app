@@ -10,7 +10,6 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.pipeline import make_pipeline
 import easyocr
 
-reader = easyocr.Reader(['en'])  # Choose the language
 
 # Load dataset
 df = pd.read_csv('healthcare_dataset.csv')
@@ -21,6 +20,8 @@ df['Test Results'] = df['Test Results'].str.lower().str.strip()
 # Train model
 pipeline = make_pipeline(TfidfVectorizer(), LogisticRegression())
 pipeline.fit(df['Medical Condition'], df['Test Results'])
+
+reader = easyocr.Reader(['en']) 
 
 def keyword_analyze_text(text, df):
     conditions = df['Medical Condition'].unique()
