@@ -4,3 +4,6 @@ Pillow
 pytesseract
 pandas
 scikit-learn
+easyocr
+
+
