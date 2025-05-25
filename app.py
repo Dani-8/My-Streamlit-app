@@ -3,6 +3,7 @@ import PyPDF2
 from PIL import Image
 import pytesseract
 import pandas as pd
+import numpy as np
 import io
 import re
 from sklearn.feature_extraction.text import TfidfVectorizer
@@ -55,7 +56,8 @@ def extract_text_from_image(file):
 
 # Extract text from image
 def extract_text_from_image(image):
-    result = reader.readtext(image)
+    image = Image.open(image)  # Convert to PIL Image
+    result = reader.readtext(np.array(image))  # Convert to numpy array
     text = ' '.join([item[1] for item in result])
     return text
 
