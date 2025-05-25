@@ -8,6 +8,9 @@ import re
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.linear_model import LogisticRegression
 from sklearn.pipeline import make_pipeline
+import easyocr
+
+reader = easyocr.Reader(['en'])  # Choose the language
 
 # Load dataset
 df = pd.read_csv('healthcare_dataset.csv')
@@ -48,6 +51,12 @@ def extract_text_from_image(file):
     image = Image.open(file).convert('L')  # Improve OCR with grayscale
     text = pytesseract.image_to_string(image)
     return text.lower()
+
+# Extract text from image
+def extract_text_from_image(image):
+    result = reader.readtext(image)
+    text = ' '.join([item[1] for item in result])
+    return text
 
 st.title("Medical Report Checker")
 uploaded_files = st.file_uploader("Upload Medical Reports (PDF or Image)", type=["pdf", "png", "jpg", "jpeg"], accept_multiple_files=True)
